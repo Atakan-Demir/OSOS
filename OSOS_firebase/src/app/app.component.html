@@ -1,0 +1,103 @@
+
+<!--
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">AKOCER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Ana Sayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/kategoriler">Kategoriler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/dersler">Dersler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/uyeler">Üyeler</a>
+        </li>
+
+      </ul>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="!servis.OturumKontrol()">
+          <a class="nav-link active" aria-current="page" href="/login">Oturum Aç</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="servis.OturumKontrol()">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{servis.aktifUye.adsoyad}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="OturumKapat()">Oturumu Kapat</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div style="height: 50px;"></div>
+<router-outlet>
+</router-outlet>
+-->
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-5" href="#">OSOS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center nav-fill" id="navbarNav">
+      <ul class="navbar-nav me-5">
+        <li class="nav-item me-5">
+          <a class="nav-link active" aria-current="page" href="#">Ana Sayfa</a>
+        </li>
+        <li class="nav-item me-5">
+          <a class="nav-link active" aria-current="page" href="/dersler">Dersler</a>
+        </li>
+        <li class="nav-item me-5">
+          <a class="nav-link active" aria-current="page" href="/sinavlar">Sınavlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/kullanicilar" >Kullanıcılar</a> <!--*ngIf="servis.aktifUye.admin==1"-->
+        </li>
+
+      </ul>
+
+    
+      
+      
+      
+      <ul class="navbar-nav" style="margin-inline-start: 200px;">
+        <li class="nav-item" > <!--*ngIf="!servis.OturumKontrol()"-->
+          <a class="nav-link" aria-current="page" href="/login">Oturum Aç</a>
+        </li>
+        <li class="nav-item dropdown" > <!--*ngIf="servis.OturumKontrol()"-->
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{uye}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="OturumKapat()">Oturumu Kapat</a></li>
+          </ul>
+        </li>
+      </ul>
+    
+    </div>
+  </div>
+</nav>
+<div style="height: 100px;"></div>
+
+<router-outlet></router-outlet>

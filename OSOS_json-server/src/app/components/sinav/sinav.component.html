@@ -1,0 +1,102 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8">
+      <h3>Sınavlar</h3>
+
+      <select class="form-control" [(ngModel)]="dersId" (ngModelChange)="DersSec($event)">
+        <option [value]="ders.id" *ngFor="let ders of dersler">{{ders.adi}}</option>
+      </select>
+
+      <button class="btn btn-outline-primary mt-3" (click)="Ekle(modalEkleDuzenle)"
+        [disabled]="servis.aktifUye.admin==0">Sınav Ekle</button>
+      <p *ngIf="dersId!=0">
+        Seçili Ders : <b>{{secDers.adi}}</b> 
+      </p>
+      <table class="table table-hover mt-3">
+        <thead>
+          
+          <th>Sınav Adı</th>
+          <th>Sınav Süresi</th>
+          <th>Soru Sayısı</th>
+          <th>Düzenle</th>
+          <th *ngIf="servis.aktifUye.admin==1">Sorular</th>
+          <th *ngIf="servis.aktifUye.admin==0">Çöz</th>
+          <th>Sil</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sinav of sinavlar">
+            
+            <td>{{sinav.sinavAdi}}</td>
+            <td>{{sinav.sinavSuresi}} dk</td>
+            <td>{{sinav.soruSayisi}}</td>
+            <td><button class="btn btn-outline-warning" (click)="Duzenle(sinav,modalEkleDuzenle)"
+                [disabled]="servis.aktifUye.admin==0">Düzenle</button></td>
+            <td *ngIf="servis.aktifUye.admin==1"><button class="btn btn-outline-info" [routerLink]="['/sorular',sinav.id]">Sorular</button></td>
+            <td *ngIf="servis.aktifUye.admin==0"><button class="btn btn-outline-info" [routerLink]="['/sinavcoz',sinav.sinavSoruId]">Çöz</button></td>
+            <td><button class="btn btn-outline-danger" (click)="Sil(sinav,modalSil)"
+                [disabled]="servis.aktifUye.admin==0">Sil</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" #modalEkleDuzenle>
+  <div class="modal-dialog">
+    <form [formGroup]="frm" (ngSubmit)="SinavEkleDuzenle()">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">{{modalBaslik}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Sınav Adı</label>
+            <input type="text" class="form-control" formControlName="sinavAdi">
+            <label>Sınav Süresi</label>
+            <input type="number" class="form-control" formControlName="sinavSuresi">
+            <label>Ders</label>
+            <select class="form-control" formControlName="sinavDersId">
+              <option [value]="ders.id" *ngFor="let ders of dersler">{{ders.adi}}</option>
+            </select>
+            <label>Soru Sayısı</label>
+            <input type="number" class="form-control" formControlName="soruSayisi">
+            <input type="hidden" class="form-control" formControlName="id">
+            <input type="hidden" class="form-control" formControlName="sinavDersId">
+            <label>Sınav-Soru Kodu</label>
+            <input type="number" class="form-control" formControlName="sinavSoruId">
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+
+          <input type="submit" class="btn btn-outline-primary" value="Kaydet">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal" tabindex="-1" #modalSil>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">{{modalBaslik}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6 *ngIf="secDers">{{secSinav.sinavAdi}} adlı Sınav Silinecektir Onaylıyor musunuz?</h6>
+      </div>
+      <div class="modal-footer">
+
+        <button class="btn btn-outline-danger" *ngIf="secSinav" (click)="SinavSil()">Sil</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

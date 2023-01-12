@@ -1,0 +1,385 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "adsoyad": "Atakan",
+      "mail": "admin@mail.com",
+      "admin": 1,
+      "parola": "123456"
+    },
+    {
+      "id": 2,
+      "adsoyad": "veli",
+      "mail": "veli@mail.com",
+      "admin": 0,
+      "parola": "123"
+    },
+    {
+      "id": 3,
+      "adsoyad": "ali",
+      "mail": "ali@mail.com",
+      "admin": 0,
+      "parola": "123456"
+    },
+    {
+      "id": 4,
+      "adsoyad": "Ayşe",
+      "mail": "ayse@mail.com",
+      "admin": 0,
+      "parola": "123"
+    },
+    {
+      "id": 5,
+      "adsoyad": "Ahmet",
+      "mail": "ahmet@mail.com",
+      "admin": 0,
+      "parola": "123"
+    }
+  ],
+  "userlessons": [
+    {
+      "id": 1,
+      "uyeId": "1",
+      "dersId": "1"
+    },
+    {
+      "id": 3,
+      "uyeId": "2",
+      "dersId": "2"
+    },
+    {
+      "id": 4,
+      "uyeId": "3",
+      "dersId": "1"
+    },
+    {
+      "id": 5,
+      "uyeId": 4,
+      "dersId": "1"
+    },
+    {
+      "id": 7,
+      "uyeId": 5,
+      "dersId": "1"
+    },
+    {
+      "id": 8,
+      "uyeId": 5,
+      "dersId": "2"
+    },
+    {
+      "id": 9,
+      "uyeId": 1,
+      "dersId": "2"
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "adi": "Yazılım Mimarileri"
+    },
+    {
+      "id": 2,
+      "adi": "Web Tasarım"
+    },
+    {
+      "id": 3,
+      "adi": "ntp"
+    },
+    {
+      "id": 4,
+      "adi": "test"
+    }
+  ],
+  "exams": [
+    {
+      "id": 1,
+      "sinavAdi": "Yazılım Vize",
+      "sinavSuresi": "20",
+      "soruSayisi": "15",
+      "sinavDersId": "1",
+      "sinavSoruId": "5"
+    },
+    {
+      "id": 2,
+      "sinavAdi": "Yazılım Final",
+      "sinavSuresi": "20",
+      "soruSayisi": "15",
+      "sinavDersId": "1",
+      "sinavSoruId": "6"
+    },
+    {
+      "id": 3,
+      "sinavAdi": "Web test",
+      "sinavSuresi": "30",
+      "soruSayisi": "20",
+      "sinavDersId": "2",
+      "sinavSoruId": "7"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "soru": "başkent neresidir ?",
+      "soruSinavId": "5"
+    },
+    {
+      "id": 2,
+      "soru": "Berlin nerede?",
+      "soruSinavId": "5"
+    },
+    {
+      "id": 3,
+      "soru": "atatürkün doğumu ?",
+      "soruSinavId": "6"
+    },
+    {
+      "id": 4,
+      "soru": "Tsk da içinde asker olmayan alay ?",
+      "soruSinavId": "6"
+    },
+    {
+      "id": 5,
+      "soru": "test1",
+      "soruSinavId": "7"
+    },
+    {
+      "id": 6,
+      "soru": "test2",
+      "soruSinavId": "7"
+    },
+    {
+      "id": 7,
+      "soru": "Çanakkale Savaşı tarihi?",
+      "soruSinavId": "5"
+    }
+  ],
+  "options": [
+    {
+      "id": 1,
+      "soruId": "1",
+      "secenek": "İstanbul",
+      "cevap": "0"
+    },
+    {
+      "id": 2,
+      "soruId": "1",
+      "secenek": "Ankara",
+      "cevap": "1"
+    },
+    {
+      "id": 3,
+      "soruId": "1",
+      "secenek": "Erzurum",
+      "cevap": "0"
+    },
+    {
+      "id": 4,
+      "soruId": "1",
+      "secenek": "Tokat",
+      "cevap": "0"
+    },
+    {
+      "id": 5,
+      "soruId": "1",
+      "secenek": "Antalya",
+      "cevap": "0"
+    },
+    {
+      "id": 6,
+      "soruId": "2",
+      "secenek": "Türkiye",
+      "cevap": "0"
+    },
+    {
+      "id": 7,
+      "soruId": "2",
+      "secenek": "Hollanda",
+      "cevap": "0"
+    },
+    {
+      "id": 8,
+      "soruId": "2",
+      "secenek": "Almanya",
+      "cevap": "1"
+    },
+    {
+      "id": 9,
+      "soruId": "2",
+      "secenek": "Fransa",
+      "cevap": "0"
+    },
+    {
+      "id": 10,
+      "soruId": "2",
+      "secenek": "Kıbrıs",
+      "cevap": "0"
+    },
+    {
+      "id": 11,
+      "soruId": "3",
+      "secenek": "Atina",
+      "cevap": "0"
+    },
+    {
+      "id": 12,
+      "soruId": "3",
+      "secenek": "Berlin",
+      "cevap": "0"
+    },
+    {
+      "id": 13,
+      "soruId": "3",
+      "secenek": "İstanbul",
+      "cevap": "0"
+    },
+    {
+      "id": 14,
+      "soruId": "3",
+      "secenek": "İzmir",
+      "cevap": "0"
+    },
+    {
+      "id": 15,
+      "soruId": "3",
+      "secenek": "Selanik",
+      "cevap": "1"
+    },
+    {
+      "id": 16,
+      "soruId": "4",
+      "secenek": "53. Alay",
+      "cevap": "0"
+    },
+    {
+      "id": 17,
+      "soruId": "4",
+      "secenek": "52. Alay",
+      "cevap": "0"
+    },
+    {
+      "id": 18,
+      "soruId": "4",
+      "secenek": "55. Alay",
+      "cevap": "0"
+    },
+    {
+      "id": 19,
+      "soruId": "4",
+      "secenek": "56. Alay",
+      "cevap": "0"
+    },
+    {
+      "id": 20,
+      "soruId": "4",
+      "secenek": "57. Alay",
+      "cevap": "1"
+    },
+    {
+      "id": 21,
+      "soruId": "5",
+      "secenek": "a",
+      "cevap": "0"
+    },
+    {
+      "id": 22,
+      "soruId": "5",
+      "secenek": "b",
+      "cevap": "0"
+    },
+    {
+      "id": 23,
+      "soruId": "5",
+      "secenek": "c",
+      "cevap": "0"
+    },
+    {
+      "id": 24,
+      "soruId": "5",
+      "secenek": "d",
+      "cevap": "1"
+    },
+    {
+      "id": 25,
+      "soruId": "5",
+      "secenek": "e",
+      "cevap": "0"
+    },
+    {
+      "id": 26,
+      "soruId": "6",
+      "secenek": "a",
+      "cevap": "0"
+    },
+    {
+      "id": 27,
+      "soruId": "6",
+      "secenek": "b",
+      "cevap": "0"
+    },
+    {
+      "id": 28,
+      "soruId": "6",
+      "secenek": "c",
+      "cevap": "0"
+    },
+    {
+      "id": 29,
+      "soruId": "6",
+      "secenek": "d",
+      "cevap": "0"
+    },
+    {
+      "id": 30,
+      "soruId": "6",
+      "secenek": "e",
+      "cevap": "0"
+    },
+    {
+      "id": 31,
+      "soruId": "7",
+      "secenek": "1915",
+      "cevap": "1"
+    },
+    {
+      "id": 32,
+      "soruId": 7,
+      "secenek": "1921",
+      "cevap": "0"
+    },
+    {
+      "id": 33,
+      "soruId": 7,
+      "secenek": "1920",
+      "cevap": "0"
+    },
+    {
+      "id": 34,
+      "soruId": 7,
+      "secenek": "1881",
+      "cevap": "0"
+    }
+  ],
+  "useranswers": [
+    {
+      "id": 1,
+      "uyeId": "2",
+      "secenekId": "1"
+    },
+    {
+      "id": 2,
+      "uyeId": "2",
+      "secenekId": "8"
+    },
+    {
+      "id": 3,
+      "uyeId": "3",
+      "secenekId": "2"
+    },
+    {
+      "id": 4,
+      "uyeId": "3",
+      "secenekId": "6"
+    }
+  ]
+}

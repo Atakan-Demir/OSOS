@@ -1,0 +1,168 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8">
+      <h3>Sorular</h3>
+
+      <select class="form-control" [(ngModel)]="sinavId" (ngModelChange)="SinavSec($event)">
+        <option [value]="sinav.id" *ngFor="let sinav of sinavlar">{{sinav.sinavAdi}}</option>
+      </select>
+
+      <button class="btn btn-outline-primary mt-3" (click)="Ekle(modalEkleDuzenle)"
+        >Soru Ekle</button> <!--[disabled]="servis.aktifUye.admin==0"-->
+      <p *ngIf="sinavId!=''">
+        Seçili Sınav : <b>{{secSinav.sinavAdi}}</b>
+      </p>
+      <table class="table table-hover mt-3">
+        <thead>
+          <th>Id</th>
+          <th>Soru</th>
+          <th>Seçenekler</th>
+          <th>Düzenle</th>        
+          <th>Sil</th>
+        </thead>
+        <tbody *ngFor="let soru of sorular">
+          <tr  style="cursor: pointer;" (click)="Bayrak()">
+            
+            <td>{{soru.id}}</td>
+            <td>{{soru.soru}}</td>
+           
+            <td><button class="btn btn-outline-info" (click)="SecenekEkleDuzenleModal(soru,secenekEkleDuzenle)">Seçenekler</button></td>
+
+            <td><button class="btn btn-outline-warning" (click)="Duzenle(soru,modalEkleDuzenle)"
+                >Düzenle</button></td> <!--[disabled]="servis.aktifUye.admin==0"-->
+            
+            <td><button class="btn btn-outline-danger" (click)="Sil(soru,modalSil)"
+                >Sil</button></td>  <!--[disabled]="servis.aktifUye.admin==0"-->
+                
+          </tr>
+          <div *ngIf="bayrak">
+            
+          </div>
+          
+        </tbody>
+      </table>
+      
+    </div>
+    <div class="col-4">
+        
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" #modalEkleDuzenle>
+  <div class="modal-dialog">
+    <form [formGroup]="frm" (ngSubmit)="SoruEkleDuzenle()">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">{{modalBaslik}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Soru Adı</label>
+            <input type="text" class="form-control" formControlName="soru">            
+            <label>Sınav</label>
+            <select class="form-control" formControlName="soruSinavId">
+              <option [ngValue]="sinav.sinavSoruId" *ngFor="let sinav of sinavlar">{{sinav.sinavAdi}}</option>
+            </select>
+            <input type="hidden" class="form-control" formControlName="id">
+            
+            
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+
+          <input type="submit" class="btn btn-outline-primary" value="Kaydet">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal" tabindex="-1" #modalSil>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">{{modalBaslik}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6 *ngIf="secSinav">{{secSoru.soru}} adlı Soru Silinecektir Onaylıyor musunuz?</h6>
+      </div>
+      <div class="modal-footer">
+
+        <button class="btn btn-outline-danger" *ngIf="secSinav" (click)="SoruSil()">Sil</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" #secenekEkleDuzenle>
+  <div class="modal-dialog modal-xl">
+    <form [formGroup]="secFrm">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">{{modalBaslik}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" >
+          <div class="row">
+            <div class="col-md-6">
+              <div><Strong>Seçili Soru : </Strong>{{secSoru.soru}}</div>
+              <table class="table table-hover mt-3">
+                <thead>
+                  <th>id</th>
+                  <th>soruıd  </th>
+                  <th>secenek </th>
+                  <th>cevap</th>
+                  <th>Duzenle</th>
+                  <th>Sil</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sec of secenekler">
+                    <td>{{sec.id}}</td>
+                    <td>{{sec.soruId}}</td>
+                    <td>{{sec.secenek}}</td>
+                    <td>
+                      <span *ngIf="sec.cevap=='1'" class="badge bg-success">Doğru</span>
+                      <span *ngIf="sec.cevap=='0'" class="badge bg-danger">Yanlış</span>
+                    </td>
+                    <td><button class="btn btn-outline-warning" (click)="edit(sec)">Düzenle</button></td>
+                    <td><button class="btn btn-outline-danger" (click)="SecenekSil(sec)">Sil</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-6" >
+              <div class="form-group">
+                
+                <input type="hidden" class="form-control" formControlName="soruId">            
+                <label>Seçenek</label>
+                <input type="text" class="form-control" formControlName="secenek">
+                <label>Doğru-Yanlış</label>
+                <select class="form-control" formControlName="cevap">
+                  <option value="1">Doğru</option>
+                  <option value="0">Yanlış</option>
+                </select>
+                <input type="hidden" class="form-control" formControlName="id">
+                <input type="button" class="btn btn-outline-primary mt-2" value="Ekle-Kaydet" (click)="SecenekEkleDuzenle()">                   
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+
+
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

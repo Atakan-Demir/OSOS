@@ -1,0 +1,146 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="alert alert-danger" *ngIf="servis.aktifUye.admin==0">Bu Bölüme Girmeye Yetkiniz Yoktur!</div>
+    </div>
+  </div>
+  <div class="row" *ngIf="servis.aktifUye.admin==1">
+    <div class="col-8">
+      <h3>Üyeler</h3>
+      <button class="btn btn-outline-primary" (click)="Ekle(modalEkleDuzenle)">Uye Ekle</button>
+      <table class="table table-hover mt-3">
+        <thead>
+          
+          <th>Adı Soyadı</th>
+          <th>E-Posta</th>
+          <th>Yönetici mi</th>
+          <th>Dersler</th>
+          <th>Düzenle</th>
+          <th>Sil</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let uye of uyeler">
+            
+            <td>{{uye.adsoyad}}</td>
+            <td>{{uye.mail}}</td>
+            <td>
+              <span *ngIf="uye.admin==1" class="badge bg-success">Evet</span>
+              <span *ngIf="uye.admin==0" class="badge bg-danger">Hayır</span>
+            </td>
+            <td><button class="btn btn-outline-info" (click)="DersEkleDuzenleModal(uye,dersEkleDuzenle)">Dersler</button></td>
+            <td><button class="btn btn-outline-warning" (click)="Duzenle(uye,modalEkleDuzenle)">Düzenle</button></td>
+            <td><button class="btn btn-outline-danger" (click)="Sil(uye,modalSil)">Sil</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" #modalEkleDuzenle>
+  <div class="modal-dialog">
+    <form [formGroup]="frm" (ngSubmit)="UyeEkleDuzenle()">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">{{modalBaslik}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Adı Soyadı</label>
+            <input type="text" class="form-control" formControlName="adsoyad">
+            <label>E-Posta</label>
+            <input type="text" class="form-control" formControlName="mail">
+            <label>Parola</label>
+            <input type="text" class="form-control" formControlName="parola">
+            <label>Yönetici mi</label>
+            <select class="form-control" formControlName="admin">
+              <option value="1">Evet</option>
+              <option value="0">Hayır</option>
+            </select>
+            <input type="hidden" class="form-control" formControlName="id">
+            
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+
+          <input type="submit" class="btn btn-outline-primary" value="Kaydet">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal" tabindex="-1" #modalSil>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">{{modalBaslik}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6 *ngIf="secUye">{{secUye.adsoyad}} adlı Üye Silinecektir Onaylıyor musunuz?</h6>
+      </div>
+      <div class="modal-footer">
+
+        <button class="btn btn-outline-danger" *ngIf="secUye" (click)="UyeSil()">Sil</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal" tabindex="-1" #dersEkleDuzenle>
+  <div class="modal-dialog">
+    <form [formGroup]="dersFrm">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title">{{modalBaslik}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>Ders Ekle</label>
+        <select class="form-control"  formControlName="dersId">
+          <option [value]="ders.id" *ngFor="let ders of dersler">{{ders.adi}}</option>
+        </select>
+        
+        <input type="hidden" class="form-control" formControlName="uyeId">
+        <input type="hidden" class="form-control" formControlName="id">
+        <input type="button" class="btn btn-primary mt-2" value="Ekle" (click)="UyeDersEkle()"> 
+
+      </div>
+      
+        <table class="table table-hover mt-3 ms-3">
+          <thead>
+            <td>id</td>
+            <td>Üye ID</td>
+            <td>Ders ID</td>
+            <td>İsim</td>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let uyeDers of uyeDersleri">
+              <th >{{uyeDers.id}}</th>
+              <th >{{uyeDers.uyeId}}</th>
+              <th >{{uyeDers.dersId}}</th>
+              
+              
+             <!--  <th>{{servis.DersById(uyeDers.dersId).pipe()}}</th>-->
+             <th>{{DerslerModalIsimGet(uyeDers.dersId)}}</th>
+             <th><button class="btn btn-danger" (click)="UyeDersSil(uyeDers)">Dersi sil</button></th>
+            </tr>
+            <tr *ngFor="let u of uyeDers">
+              
+              <th>{{u.adi}}</th>
+            </tr>
+          </tbody> 
+        </table>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
